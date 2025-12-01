@@ -1,0 +1,7 @@
+---
+- hosts: ubuntu
+  become: yes
+  tasks:
+    - name: Placeholder linux DB playbook
+      debug:
+        msg: "Running deploydatabaselinux.yml"

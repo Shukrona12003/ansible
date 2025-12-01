@@ -1,0 +1,23 @@
+---
+- hosts: ubuntu
+  become: yes
+  become_method: sudo
+
+  vars_files:
+  - vars/linuxsecrets.yml
+  
+  handlers:
+  - import_tasks: handlers/restartapache.yml
+
+  tasks:
+  - import_tasks: tasks/creatuser.yml
+    vars:
+      username: bob
+      groupname: sys
+  - import_tasks: tasks/addfiles.yml
+  - import_tasks: tasks/installsoftware.yml
+  - import_tasks: tasks/deployapacheredhat.yml
+  - import_tasks: tasks/deploylamp.yml
+
+- import_playbook: deploydatabaselinux.yml
+- import_playbook: deploydatabasewindows.yml
